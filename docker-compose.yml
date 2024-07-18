@@ -1,0 +1,18 @@
+﻿services:
+  pieshop:
+    image: pieshop
+    build:
+      context: .
+      dockerfile: PieShop/Dockerfile
+    ports:  [ 8080:8080, 8081:8081 ]
+    entrypoint: [ "/app/wait-for.sh", "psql:5432", "--", "/app/start.sh" ]
+    command: [ "dotnet", "PieShop.dll" ]
+  
+  psql:
+    image: postgres:14-alpine3.20
+    environment:
+      POSTGRES_DB: piestore
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - 5444:5432

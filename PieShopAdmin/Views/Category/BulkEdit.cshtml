@@ -1,0 +1,22 @@
+@model List<CategoryBulkViewModel>
+
+<h2>Bulk edit pies</h2>
+<hr />
+
+<form asp-action="BulkEdit" method="post">
+    @for (var i = 0; i < Model.Count; i++)
+    {
+    <div class="mb-3">
+        <label asp-for="@Model[i].CategoryId" class="form-label"></label>
+        <input asp-for="@Model[i].CategoryId" class="form-control" readonly="readonly" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@Model[i].Name" class="form-label"></label>
+
+        <input asp-for="@Model[i].Name" class="form-control" />
+        <span asp-validation-for="@Model[i].Name" class="text-danger"></span>
+    </div>
+    }
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
