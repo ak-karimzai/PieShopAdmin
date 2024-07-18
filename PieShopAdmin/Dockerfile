@@ -25,5 +25,7 @@ USER root
 RUN apt-get -q update && apt-get -qy install netcat-traditional
 COPY ./ShellScripts/wait-for.sh .
 COPY ./ShellScripts/start.sh .
+RUN chmod +x wait-for.sh
+RUN chmod +x start.sh
 
 ENTRYPOINT ["dotnet", "PieShopAdmin.dll"]
